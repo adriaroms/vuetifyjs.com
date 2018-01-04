@@ -89,7 +89,17 @@
         {
           title: 'русский',
           locale: 'ru'
+        },
+        /*
+        {
+          title: 'Catalan',
+          locale: 'ca'
+        },
+        {
+          title: 'Spanish',
+          locale: 'es'
         }
+        */
       ]
     }),
 
