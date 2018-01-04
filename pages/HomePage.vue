@@ -33,7 +33,7 @@
               large
             ).mb-2
               strong {{ $t("Vuetify.Home.getStarted") }}
-            div version {{ $store.state.currentVersion }}
+            div {{ $t("Vuetify.Home.versionText") }} {{ $store.state.currentVersion }}
 
     section#features
       v-container
@@ -51,8 +51,8 @@
     section#checkFeatures
       v-container
         h2.text-xs-center
-          span All the Tools You  Need
-          | To Build Incredible User Interfaces
+          span {{ $t("Vuetify.Home.checkFeaturesTitle") }}
+          | {{ $t("Vuetify.Home.checkFeaturesTitleCtd") }}
         v-layout(row wrap justify-center)
           v-flex(
             xs12

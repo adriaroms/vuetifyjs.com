@@ -3,6 +3,7 @@ export default {
   "heading1": "Vuetify",
   "heading1cont": "Material Component Framework",
   "getStarted": "Empezar",
+  "versionText": "versión",
   "features": [
     {
       "img": "/static/doc-images/feature1.svg",
