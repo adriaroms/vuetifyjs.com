@@ -18,6 +18,8 @@ import { sync } from 'vuex-router-sync'
 import App from './App.vue'
 import Components from '@/components'
 
+Vue.config.performance = process.env.NODE_ENV === 'development'
+
 // Requests
 Vue.prototype.$http = axios.create({ baseURL: '/' })
 

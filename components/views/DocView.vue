@@ -19,7 +19,6 @@
           app-ad(slot="top")
 </template>
 
-
 <script>
   import AppAd from '@/components/core/AppAd'
   import AppFooter from '@/components/core/AppFooter'
@@ -53,6 +52,9 @@
       },
       namespace () {
         const route = this.$route.path.slice(1).split('/')
+
+        // If a root page, prefix namespace with Vuetify
+        if (route.length === 1) route.unshift('vuetify')
 
         return route.map(s => camel(s)).join('.')
       },

@@ -35,12 +35,15 @@
 
 <script>
   import { mapState } from 'vuex'
+  import appDrawerItems from '@/assets/app-drawer-items'
 
   export default {
+    data: () => ({
+      items: appDrawerItems
+    }),
     computed: {
       ...mapState({
-        footer: state => !state.stateless,
-        items: state => state.appDrawerItems
+        footer: state => !state.stateless
       }),
       index () {
         return this.routes.findIndex(route => {

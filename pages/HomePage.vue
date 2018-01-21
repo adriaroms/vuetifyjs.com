@@ -111,7 +111,7 @@
             p {{ $t("Vuetify.Home.support.hasVuetifyHelped") }}
             p {{ $t("Vuetify.Home.support.showYourSupport") }} <a href="https://www.patreon.com/vuetify" target="_blank">{{ $t("Vuetify.Home.support.becomingAPatron") }}</a>.
 
-    section#sponsors-and-backers.my-5
+    section.sponsors-and-backers.my-5
       v-container
         v-card(
           :class="{ 'pa-5': $vuetify.breakpoint.mdAndUp, 'py-5 px-2': $vuetify.breakpoint.smAndDown }"
@@ -131,6 +131,7 @@
                 :href="`${supporter.href}?ref=vuetifyjs.com`"
                 :title="supporter.title"
                 :key="i"
+                @click="$ga.event('home sponsor click', 'click', supporter.title)"
                 v-else
               )
                 img(
@@ -152,20 +153,21 @@
 </template>
 
 <script>
+  import supporters from '@/assets/supporters'
+
   // Components
   import HomeFooter from '@/components/misc/HomeFooter'
 
-  // Utilities
-  import { mapState } from 'vuex'
-
   export default {
-    name: 'home-page',
+    name: 'HomePage',
 
     components: {
       HomeFooter
     },
 
     data: () => ({
+      diamond: supporters.diamond,
+      palladium: supporters.palladium,
       socials: [
         {
           icon: 'fa-github',
@@ -183,10 +185,6 @@
     }),
 
     computed: {
-      ...mapState({
-        diamond: state => state.supporters.diamond,
-        palladium: state => state.supporters.palladium
-      }),
       checkFeatures () {
         return this.$t('Vuetify.Home.checkFeatures')
       },
@@ -200,8 +198,7 @@
         return this.$t('Vuetify.Home.letterFromAuthor')
       },
       supporters () {
-        const supporters = [].concat(this.diamond)
-          .concat(this.palladium)
+        const supporters = [...this.diamond, ...this.palladium]
 
         const end = { break: true }
 
@@ -399,7 +396,7 @@
       p
         font-size 36px
 
-  #sponsors-and-backers
+  .sponsors-and-backers
     .card
       z-index 1
 

@@ -9,7 +9,7 @@ export default {
     'v-list-tile-action',
     'v-list-tile-avatar',
     'v-list-tile-group',
-    'v-list-tile-action-text',
+    'v-list-tile-action-text'
   ],
   examples: [{
     avatarTwoLines: {
@@ -26,7 +26,7 @@ export default {
     },
     avatarThreeLines: {
       header: 'Аватар с 3 строками',
-      desc: 'Для 3 строчных списков, подзаголовки будут сжиматься вертикально на 2 строки, а затем многоточие. Если вам требуется более 3 строк, рекомендуется использовать <router-link to="/components/cards"> карту </router-link>.'
+      desc: 'Для 3 строчных списков, подзаголовки будут сжиматься вертикально на 2 строки, а затем многоточие. Если вам требуется более 3 строк, рекомендуется использовать [карту](/components/cards) .'
     },
     avatarSubheaderTitleAndAction: {
       header: 'Аватар с заголовком и действием',
@@ -51,12 +51,6 @@ export default {
     expansionLists: {
       header: 'Списки расширения',
       desc: 'Список может содержать группу элементов, которые будут отображаться при нажатии. Списки расширений также используются в компоненте `navigation drawer`.'
-    },
-    dark: {
-      header: 'Темная схема',
-      desc: 'Список может принимать альтернативный темный цвет.',
-      inverted: true,
-      uninverted: true
     }
   }]
 }

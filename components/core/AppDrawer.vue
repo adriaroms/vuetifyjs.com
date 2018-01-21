@@ -3,14 +3,20 @@
     app
     fixed
     v-model="appDrawer"
+    :stateless="isFullscreen"
   )#app-drawer
     div.text-xs-center
-      div.diamond-sponsor-label Diamond Sponsors
+      div(v-text="$t('Vuetify.AppDrawer.diamondSponsors')").diamond-sponsor-label
       div(
         v-for="diamond in diamonds"
         :key="diamond.title"
       )
-        a(:href="diamond.href" target="_blank" rel="noopener")
+        a(
+          :href="diamond.href"
+          target="_blank"
+          rel="noopener"
+          @click="$ga.event('drawer sponsor click', 'click', diamond.title)"
+        )
           img.diamond-sponsor(
             :src="`/static/doc-images/${diamond.src}`"
             :alt="diamond.title"
@@ -23,7 +29,7 @@
         active-class=""
         to="/getting-started/sponsors-and-backers"
       )
-        span.caption Become a Sponsor
+        span(v-text="$t('Vuetify.AppDrawer.becomeASponsor')").caption
     v-container(fluid)
       v-text-field(
         placeholder="Search"
@@ -39,10 +45,11 @@
       )
     div.py-3.text-xs-center
       a(
-        href="https://vuejobs.com/?utm_source=vuejobs&utm_medium=banner&utm_campaign=linking"
+        href="https://vuejobs.com/?utm_source=vuejobs&utm_medium=banner&utm_campaign=linking&ref=vuetifyjs.com"
         target="_blank"
         rel="noopener"
         class="d-inline-block"
+        @click="$ga.event('drawer jobs click', 'click', 'vuejobs')"
       )
         img(
           src="/static/doc-images/affiliates/vuejobs-logo.svg"
@@ -135,19 +142,21 @@
 
 <script>
   import { mapState } from 'vuex'
+  import supporters from '@/assets/supporters'
+  import appDrawerItems from '@/assets/app-drawer-items'
 
   export default {
     data: () => ({
+      diamonds: supporters.diamond,
       docSearch: {},
       isSearching: false,
+      items: appDrawerItems,
       search: ''
     }),
 
     computed: {
       ...mapState({
-        diamonds: state => state.supporters.diamond,
         isFullscreen: state => state.isFullscreen,
-        items: state => state.appDrawerItems,
         stateless: state => state.stateless
       }),
       appDrawer: {
@@ -163,10 +172,13 @@
 
     watch: {
       $route () {
-        if(this.stateless &&
+        if (this.stateless &&
           this.appDrawer &&
           this.$vuetify.breakpoint.mdAndDown
         ) this.appDrawer = false
+      },
+      appDrawer (val) {
+        if (!val) this.docSearch.autocomplete.autocomplete.close()
       },
       isSearching (val) {
         this.$refs.toolbar.isScrolling = !val
@@ -215,9 +227,6 @@
             vm.$router.push(loc.pop())
           }
         })
-      },
-      toggleSidebar () {
-        this.$store.commit('vuetify/SIDEBAR', !this.$store.state.sidebar)
       }
     }
   }
@@ -264,6 +273,6 @@
 
       &-label
         color #676767
-        margin: 2em 0 1.5em
+        margin: 24px 0 16px 0
         font-size 13px
 </style>

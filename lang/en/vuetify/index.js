@@ -1,7 +1,9 @@
+import AppDrawer from './AppDrawer'
 import Home from './Home'
-import PremadeThemes from './PremadeThemes'
+import PreMadeThemes from './PreMadeThemes'
 
 export default {
+  AppDrawer,
   Home,
-  PremadeThemes
+  PreMadeThemes
 }
