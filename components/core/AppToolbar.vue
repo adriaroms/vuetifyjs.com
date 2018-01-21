@@ -87,19 +87,13 @@
           locale: 'en'
         },
         {
-          title: 'русский',
+          title: 'Русский',
           locale: 'ru'
         },
-        /*
         {
-          title: 'Catalan',
-          locale: 'ca'
-        },
-        {
-          title: 'Spanish',
-          locale: 'es'
+          title: '简体中文',
+          locale: 'zh_Hans'
         }
-        */
       ]
     }),
 
